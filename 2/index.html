@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymBzF034zBXvecz6ID -->
+<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymYpotYOdeh_lsymdK -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,39 +15,45 @@
 </head>
 
 <body>
-  <div><span id="demo-area-01-show">9877</span></div>
+  <div><span id="demo-area-01-show">123</span></div>
 
   <script>'use strict';
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } step("next"); }); }; }
 
-_asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
+_asyncToGenerator(regeneratorRuntime.mark(function _callee19() {
   var relay, buttonA, matrix, _E9_97_9C_E5_8D_A1, buttonB, Flag, _E4_BA_92_E6_8E_A5, _E9_81_8E_E9_97_9C, photocell, dht, shake, ultrasonic;
 
-  return regeneratorRuntime.wrap(function _callee18$(_context18) {
+  return regeneratorRuntime.wrap(function _callee19$(_context19) {
     while (1) {
-      switch (_context18.prev = _context18.next) {
+      switch (_context19.prev = _context19.next) {
         case 0:
 
+          if (window.readyBoardLength) {
+            window.readyBoardLength = window.readyBoardLength + 1;
+          } else {
+            window.readyBoardLength = 1;
+          }
+
           boardReady({ board: 'Bit', device: 'a7NF8vfGEipBCnUgW', transport: 'mqtt' }, (function () {
-            var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee16(board) {
+            var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee18(board) {
               var count, speechRecognition;
-              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
                 while (1) {
-                  switch (_context16.prev = _context16.next) {
+                  switch (_context18.prev = _context18.next) {
                     case 0:
                       board.samplingInterval = 250;
                       for (count = 0; count < 1; count++) {
                         relay = getRelay(board, bitGPIO(0));
                         matrix = getMatrix(board, 4, 25);
-                        _E9_97_9C_E5_8D_A1 = 6;
+                        _E9_97_9C_E5_8D_A1 = 0;
                         Flag = false;
                         _E9_81_8E_E9_97_9C = false;
                         buttonA = getPullupButton(board, 35);
                         buttonB = getPullupButton(board, 27);
                         _E4_BA_92_E6_8E_A5 = getShock(board, bitGPIO(6));
                         photocell = getPhotocell(board, 4);
-                        dht = getDht(board, bitGPIO(2));
+                        dht = getDht(board, bitGPIO(4));
                         shake = getShock(board, bitGPIO(3));
                         ultrasonic = getUltrasonic(board, bitGPIO(7), bitGPIO(8));
                         relay.on();
@@ -319,7 +325,6 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
                           return ref.apply(this, arguments);
                         };
                       })(), 500);
-                      document.getElementById("demo-area-01-show").innerHTML = '9877';
 
                       speechRecognition = (function () {
                         var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee15() {
@@ -425,13 +430,72 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
                       })();
 
                       speechRecognition();
+                      document.getElementById("demo-area-02-light").addEventListener("click", _asyncToGenerator(regeneratorRuntime.mark(function _callee16() {
+                        return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                          while (1) {
+                            switch (_context16.prev = _context16.next) {
+                              case 0:
+                                if (document.getElementById("demo-area-02-light").className == "on") {
+                                  document.getElementById("demo-area-02-light").className = "off";
+                                } else {
+                                  document.getElementById("demo-area-02-light").className = "on";
+                                }
+                                if (_E9_97_9C_E5_8D_A1 == 7) {
+                                  if (document.getElementById("demo-area-02-light").className == "on") {
+                                    relay.off();
+                                  }
+                                  if (document.getElementById("demo-area-02-light").className == "off") {
+                                    matrix.setColor(3 - 1 + (2 - 1) * 5, '#ffffff');
+                                    relay.on();
+                                    Flag = true;
+                                  }
+                                }
 
-                    case 14:
+                              case 2:
+                              case 'end':
+                                return _context16.stop();
+                            }
+                          }
+                        }, _callee16, this);
+                      })));
+                      setDeviceOrientationListener((function () {
+                        var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee17(alpha, beta, gamma) {
+                          return regeneratorRuntime.wrap(function _callee17$(_context17) {
+                            while (1) {
+                              switch (_context17.prev = _context17.next) {
+                                case 0:
+                                  document.getElementById("demo-area-01-show").innerHTML = Math.round(beta * 10) / 10;
+                                  if (_E9_97_9C_E5_8D_A1 == 8) {
+                                    if (Math.round(beta * 10) / 10 == 0.5) {
+                                      relay.off();
+                                    }
+                                  }
+
+                                case 2:
+                                case 'end':
+                                  return _context17.stop();
+                              }
+                            }
+                          }, _callee17, this);
+                        }));
+
+                        return function (_x7, _x8, _x9) {
+                          return ref.apply(this, arguments);
+                        };
+                      })());
+                      if (window.boardReadyNumber) {
+                        window.boardReadyNumber = window.boardReadyNumber + 1;
+                      } else {
+                        window.boardReadyNumber = 1;
+                      }
+                      allBoardReady(window.boardReadyNumber);
+
+                    case 17:
                     case 'end':
-                      return _context16.stop();
+                      return _context18.stop();
                   }
                 }
-              }, _callee16, this);
+              }, _callee18, this);
             }));
 
             return function (_x) {
@@ -439,32 +503,12 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
             };
           })());
 
-          document.getElementById("demo-area-02-light").addEventListener("click", _asyncToGenerator(regeneratorRuntime.mark(function _callee17() {
-            return regeneratorRuntime.wrap(function _callee17$(_context17) {
-              while (1) {
-                switch (_context17.prev = _context17.next) {
-                  case 0:
-                    if (document.getElementById("demo-area-02-light").className == "on") {
-                      document.getElementById("demo-area-02-light").className = "off";
-                    } else {
-                      document.getElementById("demo-area-02-light").className = "on";
-                    }
-                    if (document.getElementById("demo-area-02-light").className == "on") {}
-
-                  case 2:
-                  case 'end':
-                    return _context17.stop();
-                }
-              }
-            }, _callee17, this);
-          })));
-
         case 2:
         case 'end':
-          return _context18.stop();
+          return _context19.stop();
       }
     }
-  }, _callee18, this);
+  }, _callee19, this);
 }))();</script>
 
 
