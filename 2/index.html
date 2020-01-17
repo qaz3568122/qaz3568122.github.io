@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymASp0Mbq7XAc4a2UY -->
+<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymBzF034zBXvecz6ID -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div><span id="demo-area-01-show">987</span></div>
+  <div><span id="demo-area-01-show">9877</span></div>
 
   <script>'use strict';
 
@@ -319,7 +319,7 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
                           return ref.apply(this, arguments);
                         };
                       })(), 500);
-                      document.getElementById("demo-area-01-show").innerHTML = '987';
+                      document.getElementById("demo-area-01-show").innerHTML = '9877';
 
                       speechRecognition = (function () {
                         var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee15() {
@@ -382,6 +382,16 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
                                                   console.log(result.resultTranscript);
                                                   if (_E9_97_9C_E5_8D_A1 == 6) {
                                                     document.getElementById("demo-area-01-show").innerHTML = result.resultTranscript;
+                                                    if (result.resultTranscript.indexOf("開燈") !== -1) {
+                                                      relay.off();
+                                                      console.log(event.results[result.resultLength]);
+                                                    }
+                                                    if (result.resultTranscript.indexOf("關燈") !== -1) {
+                                                      relay.on();
+                                                      matrix.setColor(2 - 1 + (2 - 1) * 5, '#ffffff');
+                                                      Flag = true;
+                                                      console.log(event.results[result.resultLength]);
+                                                    }
                                                   }
                                                   console.log("final");
                                                 } else if (event.results[result.resultLength].isFinal === false) {}
@@ -429,17 +439,6 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
             };
           })());
 
-          if (result.resultTranscript.indexOf("開燈") !== -1) {
-            relay.off();
-            console.log(event.results[result.resultLength]);
-          }
-          if (result.resultTranscript.indexOf("關燈") !== -1) {
-            relay.on();
-            matrix.setColor(2 - 1 + (2 - 1) * 5, '#ffffff');
-            Flag = true;
-            console.log(event.results[result.resultLength]);
-          }
-
           document.getElementById("demo-area-02-light").addEventListener("click", _asyncToGenerator(regeneratorRuntime.mark(function _callee17() {
             return regeneratorRuntime.wrap(function _callee17$(_context17) {
               while (1) {
@@ -460,7 +459,7 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee18() {
             }, _callee17, this);
           })));
 
-        case 4:
+        case 2:
         case 'end':
           return _context18.stop();
       }
