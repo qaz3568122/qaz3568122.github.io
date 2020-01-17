@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymYpotYOdeh_lsymdK -->
+<!-- saved from url=(0070)https://bit.webduino.io/blockly/live-preview.html#-LymZWfGEq887yPikvK_ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -22,7 +22,7 @@
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } step("next"); }); }; }
 
 _asyncToGenerator(regeneratorRuntime.mark(function _callee19() {
-  var relay, buttonA, matrix, _E9_97_9C_E5_8D_A1, buttonB, Flag, _E4_BA_92_E6_8E_A5, _E9_81_8E_E9_97_9C, photocell, dht, shake, ultrasonic;
+  var relay, buttonA, _E9_97_9C_E5_8D_A1, matrix, buttonB, Flag, _E4_BA_92_E6_8E_A5, _E9_81_8E_E9_97_9C, photocell, dht, shake, ultrasonic;
 
   return regeneratorRuntime.wrap(function _callee19$(_context19) {
     while (1) {
@@ -464,14 +464,9 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee19() {
                             while (1) {
                               switch (_context17.prev = _context17.next) {
                                 case 0:
-                                  document.getElementById("demo-area-01-show").innerHTML = Math.round(beta * 10) / 10;
-                                  if (_E9_97_9C_E5_8D_A1 == 8) {
-                                    if (Math.round(beta * 10) / 10 == 0.5) {
-                                      relay.off();
-                                    }
-                                  }
+                                  document.getElementById("demo-area-01-show").innerHTML = Math.round(alpha);
 
-                                case 2:
+                                case 1:
                                 case 'end':
                                   return _context17.stop();
                               }
@@ -503,7 +498,13 @@ _asyncToGenerator(regeneratorRuntime.mark(function _callee19() {
             };
           })());
 
-        case 2:
+          if (_E9_97_9C_E5_8D_A1 == 8) {
+            if (Math.round(beta * 10) / 10 < 5) {
+              relay.off();
+            }
+          }
+
+        case 3:
         case 'end':
           return _context19.stop();
       }
